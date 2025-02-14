@@ -18,17 +18,13 @@ app.get('/reaction', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'reaction.html'));
 });
 
-// Endpoint to get the current reaction times
-app.get('/reaction-times', (req, res) => {
-  res.json(formData);
-});
-
 // Handle the form submission via fetch
 app.post('/input', (req, res) => {
-    const { name, reactionTime } = req.body;
+    const { name, reactionTime, submissionDate } = req.body;
 
+    // No need to escape here, you trust the client
     // Add the new user to the array
-    formData.push({ name, reactionTime });
+    formData.push({ name, reactionTime, submissionDate });
 
     // Send the updated list of users back as JSON
     res.json(formData);
